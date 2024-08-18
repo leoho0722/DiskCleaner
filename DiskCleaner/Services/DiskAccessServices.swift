@@ -21,12 +21,11 @@ struct DiskAccessServices {
         
         /// 拒絕授權
         case denied
-        
-        /// 已進行有限授權
-        case limited
     }
     
-    static func requestAuthorization() {
-        
+    static func requestAuthorization() -> AuthorizationStatus {
+        let checkFilePath = "/Library/Application Support/com.apple.TCC/TCC.db"
+        let status = FileManager.default.isReadableFile(atPath: checkFilePath)
+        return status ? .authorized : .denied
     }
 }

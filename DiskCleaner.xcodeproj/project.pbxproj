@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D03BA2252B95FECE00AEA19D /* CleanDiskServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BA2242B95FECE00AEA19D /* CleanDiskServices.swift */; };
 		D03BA22A2B96070D00AEA19D /* DiskAccessServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BA2292B96070D00AEA19D /* DiskAccessServices.swift */; };
+		D0BD8A5B2C71E22500C197BF /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD8A5A2C71E22500C197BF /* PermissionView.swift */; };
+		D0BD8A5D2C71F37300C197BF /* PermissionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD8A5C2C71F36300C197BF /* PermissionServices.swift */; };
+		D0BD8A602C71F54400C197BF /* PermissionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD8A5F2C71F54400C197BF /* PermissionViewViewModel.swift */; };
 		D0C3EA022B95EF99001337B7 /* DiskCleanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EA012B95EF99001337B7 /* DiskCleanerApp.swift */; };
 		D0C3EA042B95EF99001337B7 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EA032B95EF99001337B7 /* OptionsView.swift */; };
 		D0C3EA062B95EF9B001337B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0C3EA052B95EF9B001337B7 /* Assets.xcassets */; };
@@ -20,6 +23,9 @@
 /* Begin PBXFileReference section */
 		D03BA2242B95FECE00AEA19D /* CleanDiskServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanDiskServices.swift; sourceTree = "<group>"; };
 		D03BA2292B96070D00AEA19D /* DiskAccessServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessServices.swift; sourceTree = "<group>"; };
+		D0BD8A5A2C71E22500C197BF /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		D0BD8A5C2C71F36300C197BF /* PermissionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionServices.swift; sourceTree = "<group>"; };
+		D0BD8A5F2C71F54400C197BF /* PermissionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewViewModel.swift; sourceTree = "<group>"; };
 		D0C3E9FE2B95EF99001337B7 /* DiskCleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiskCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C3EA012B95EF99001337B7 /* DiskCleanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCleanerApp.swift; sourceTree = "<group>"; };
 		D0C3EA032B95EF99001337B7 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -44,10 +50,27 @@
 		D03BA2232B95FEAA00AEA19D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D0BD8A5C2C71F36300C197BF /* PermissionServices.swift */,
 				D03BA2242B95FECE00AEA19D /* CleanDiskServices.swift */,
 				D03BA2292B96070D00AEA19D /* DiskAccessServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		D0BD8A572C71D67A00C197BF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D0BD8A5A2C71E22500C197BF /* PermissionView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D0BD8A5E2C71F52E00C197BF /* PermissionView */ = {
+			isa = PBXGroup;
+			children = (
+				D0BD8A5F2C71F54400C197BF /* PermissionViewViewModel.swift */,
+			);
+			path = PermissionView;
 			sourceTree = "<group>";
 		};
 		D0C3E9F52B95EF99001337B7 = {
@@ -91,6 +114,7 @@
 		D0C3EA102B95EFE9001337B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D0BD8A572C71D67A00C197BF /* Components */,
 				D0C3EA032B95EF99001337B7 /* OptionsView.swift */,
 			);
 			path = Views;
@@ -115,6 +139,7 @@
 		D0C3EA162B95F262001337B7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D0BD8A5E2C71F52E00C197BF /* PermissionView */,
 				D0C3EA172B95F2AC001337B7 /* OptionsView */,
 			);
 			path = ViewModels;
@@ -159,7 +184,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					D0C3E9FD2B95EF99001337B7 = {
 						CreatedOnToolsVersion = 15.3;
@@ -204,10 +229,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BD8A5D2C71F37300C197BF /* PermissionServices.swift in Sources */,
+				D0BD8A602C71F54400C197BF /* PermissionViewViewModel.swift in Sources */,
 				D0C3EA042B95EF99001337B7 /* OptionsView.swift in Sources */,
 				D03BA2252B95FECE00AEA19D /* CleanDiskServices.swift in Sources */,
 				D0C3EA022B95EF99001337B7 /* DiskCleanerApp.swift in Sources */,
 				D03BA22A2B96070D00AEA19D /* DiskAccessServices.swift in Sources */,
+				D0BD8A5B2C71E22500C197BF /* PermissionView.swift in Sources */,
 				D0C3EA192B95F2CE001337B7 /* OptionsViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +277,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -275,6 +304,8 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -312,6 +343,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -330,6 +362,8 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -342,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DiskCleaner/Preview Content\"";
 				DEVELOPMENT_TEAM = 23JEQ2524P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -371,6 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DiskCleaner/Preview Content\"";
 				DEVELOPMENT_TEAM = 23JEQ2524P;
 				ENABLE_HARDENED_RUNTIME = YES;

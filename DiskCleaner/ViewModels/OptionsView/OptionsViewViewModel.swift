@@ -8,32 +8,22 @@
 import Observation
 import SwiftUI
 
+@MainActor
 @Observable
 class OptionsViewViewModel {
     
-    var allCleanIsOn: Bool = false
+    func checkPermissions() async -> Bool {
+        let status = DiskAccessServices.requestAuthorization()
+        return status == .authorized
+    }
     
-    var cachesCleanIsOn: Bool = false
-    
-    var logsCleanIsOn: Bool = false
-    
-    func clean() {
+    func clean(_ type: CleanDiskServices.CleanMode?) {
+        guard let mode = type else {
+            return
+        }
         let services = CleanDiskServices()
         do {
-            if allCleanIsOn {
-                // 清除 ~/Library/Caches 和 ~/Library/Logs 目錄內的所有檔案與資料夾
-                try services.clean(mode: .all)
-            } else {
-                switch (cachesCleanIsOn, logsCleanIsOn) {
-                case (true, false):
-                    // 清除 ~/Library/Caches 目錄內的所有檔案與資料夾
-                    try services.clean(mode: .caches)
-                case (false, true):
-                    // 清除 ~/Library/Logs 目錄內的所有檔案與資料夾
-                    try services.clean(mode: .logs)
-                default: break
-                }
-            }
+            try services.clean(mode: mode)
         } catch {
             print(error)
         }

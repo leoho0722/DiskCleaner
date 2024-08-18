@@ -11,7 +11,7 @@ struct CleanDiskServices {
     
     private let fileManager = FileManager.default
     
-    enum CleanMode {
+    enum CleanMode: Int, CaseIterable, Identifiable {
         
         /// 清除 ~/Library/Caches 和 ~/Library/Logs 目錄內的所有檔案與資料夾
         case all
@@ -21,6 +21,19 @@ struct CleanDiskServices {
         
         /// 清除 ~/Library/Logs 目錄內的所有檔案與資料夾
         case logs
+        
+        var id: Int { rawValue }
+        
+        var title: String {
+            switch self {
+            case .all:
+                "清除全部 (Logs 和 Caches)"
+            case .caches:
+                "清除 Caches"
+            case .logs:
+                "清除 Logs"
+            }
+        }
     }
     
     /// 根據開啟的清除模式，來刪除對應資料

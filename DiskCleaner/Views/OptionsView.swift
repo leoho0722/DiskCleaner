@@ -10,54 +10,55 @@ import SwiftUI
 struct OptionsView: View {
     
     @State private var vm = OptionsViewViewModel()
+    @State private var selectedCleanMode: CleanDiskServices.CleanMode?
+    @State private var showFullAccessDiskPermissionAlert: Bool = false
+    let diskAccessPermission: Bool
     
     var body: some View {
         VStack {
-            Text("Disk Cleaner")
+            Text("磁碟空間清除小工具")
                 .font(.largeTitle)
-                .padding()
+                .padding(.top)
             
-            Spacer()
-            
-            buildCleanOptionToggle(isOn: $vm.logsCleanIsOn,
-                                   title: "Clean Logs")
-            buildCleanOptionToggle(isOn: $vm.cachesCleanIsOn,
-                                   title: "Clean Caches")
-            buildCleanOptionToggle(isOn: $vm.allCleanIsOn,
-                                   title: "Clean All (Logs and Caches)")
-            
-            Button {
-                vm.clean()
-            } label: {
-                Text("Clean")
-                    .font(.title2)
+            if !diskAccessPermission {
+                PermissionView(message: "本應用需要完全取用磁碟權限以正常運作。\n請前往「系統偏好設定 > 隱私權與安全性 > 完全取用磁碟」")
             }
-            .frame(minWidth: 200, minHeight: 100)
-            .padding()
+            
+            Picker("清除方式", selection: $selectedCleanMode) {
+                ForEach(CleanDiskServices.CleanMode.allCases) { mode in
+                    Text(mode.title)
+                        .tag(mode)
+                }
+            }
+            
+            Text("開始清除")
+                .font(.system(size: 15))
+                .background {
+                    RoundedRectangle(cornerRadius: 10, style: .circular)
+                        .frame(minWidth: 200, minHeight: 25)
+                        .foregroundStyle(.blue)
+                }
+                .onTapGesture {
+                    guard diskAccessPermission else {
+                        showFullAccessDiskPermissionAlert.toggle()
+                        return
+                    }
+                    vm.clean($selectedCleanMode.wrappedValue)
+                }
+                .padding()
         }
         .padding()
+        .alert("請先允許本應用存取「完全取用磁碟」權限，才能進行清除",
+               isPresented: $showFullAccessDiskPermissionAlert) {
+            Button("確認") {}
+        }
     }
 }
 
 #Preview {
-    OptionsView()
-        .frame(width: 300, height: 300)
+    OptionsView(diskAccessPermission: false)
 }
 
-// MARK: - @ViewBuilder
-
-private extension OptionsView {
-    
-    @ViewBuilder
-    func buildCleanOptionToggle<S>(isOn: Binding<Bool>,
-                                   title: LocalizedStringKey,
-                                   style: S = .switch) -> some View where S: ToggleStyle {
-        HStack {
-            Text(title)
-                .font(.title3)
-            Spacer()
-            Toggle(isOn: isOn) {}
-                .toggleStyle(style)
-        }
-    }
+#Preview {
+    OptionsView(diskAccessPermission: true)
 }
